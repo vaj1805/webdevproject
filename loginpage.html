@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Light background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #loginForm {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Input and button styling */
+        input[type="text"], input[type="password"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"], .signup-btn {
+            width: 100%;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .signup-btn {
+            background-color: #45a049; /* Different color for signup button */
+        }
+
+        .signup-btn:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #228B22;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto; /* Ensure footer sticks at the bottom */
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>LOGIN</h2>
+    <form id="loginForm" action="#" method="post">
+        <!-- Username Field -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+
+        <!-- Password Field -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+
+        <!-- Contact Number Field -->
+        <label for="contactnumber">Contact Number:</label>
+        <input type="tel" id="contactnumber" name="contactnumber" required>
+        <br>
+
+        <button type="submit">Login</button>
+        <button type="button" class="signup-btn" onclick="location.href='signup.html'">Signup</button> <!-- Signup button -->
+    </form>
+
+    <footer>
+        <p>&copy; 2024 EcoPark Nursery. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from submit.
+
+            // Get the field values
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const contactnumber = document.getElementById("contactnumber").value;
+
+            // Regular expressions for validation
+            const usernamePattern = /^[a-zA-Z0-9_]{3,20}$/;  // Allows letters, numbers, underscores, 3-20 characters
+            const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;  // At least one number, one lowercase, one uppercase, min 8 characters
+            const contactNumberPattern = /^[0-9]{10}$/;  
+
+            // Validate all the fields.
+            if (!usernamePattern.test(username)) {
+                alert("Username must be 3-20 characters long and can only contain letters, numbers, and underscores.");
+                return;
+            }
+
+            if (!passwordPattern.test(password)) {
+                alert("Password must be at least 8 characters long, contain at least one number, one lowercase and one uppercase letter.");
+                return;
+            }
+
+            if (!contactNumberPattern.test(contactnumber)) {
+                alert("Please enter a valid 10-digit contact number.");
+                return;
+            }
+
+            alert("Login successful!");
+            document.getElementById("loginForm").submit();  // Form submission
+        });
+    </script>
+</body>
+</html>

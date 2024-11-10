@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPark</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Styling for search bar and suggestions */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-input {
+            padding: 8px;
+            width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        /* Styling for the suggestions box */
+        .suggestions {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            max-width: 250px;
+            display: none;
+            z-index: 1000;
+            top: 35px;
+            left: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .suggestions p {
+            margin: 0;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .suggestions p:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h1>Ecopark Nursery</h1>
+    <!-- Search Form with Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="search" class="search-input" placeholder="Search plants..." autocomplete="off">
+        <div id="suggestions" class="suggestions"></div>
+    </div>
+
+    <nav>
+        <a href="aboutus.html"><p class="headfont"> About Us </p></a>
+        <a href="allproducts.html"><p class="headfont">Products</p></a>
+        <a href="contactus.html"><p class="headfont">Contact Us</p></a>
+        <a href="./gallery.html"><p class="headfont">Gallery</p></a>
+        <a href="loginpage.html"><p class="headfont">Login</p></a>
+        <a href="admin.html"><p class="headfont">Admin</p></a>
+    </nav>
+</header>
+
+<section id="home">
+    <hr>
+    <div class="container">
+        <img src="Main-img.jpg" class="Main-img-1" alt="Main Image">
+    </div>
+    <h2 class="Centered">Welcome to Ecopark Nursery</h2>
+    <p id="normal-heading">Your one-stop shop for all your gardening needs.</p>
+</section>
+
+<section id="about">
+    <p>We are a private nursery dedicated to providing the best plants and gardening supplies.</p>
+</section>
+
+<footer>
+    <p>&copy; 2024 EcoPark Nursery</p>
+</footer>
+
+<!-- Place the AJAX code at the end of the body section -->
+<script>
+    $(document).ready(function() {
+        // Detect input in the search field
+        $('#search').on('input', function() {
+            let query = $(this).val();  // Get the value from the input
+            if (query.length > 0) {
+                $.ajax({
+                    url: 'search.php', // Call the PHP script for suggestions
+                    method: 'GET',
+                    data: { query: query },  // Send input to search.php
+                    success: function(data) {
+                        if (data) {
+                            $('#suggestions').html(data).show();  // Show the suggestions box with results
+                        } else {
+                            $('#suggestions').hide();  // Hide if no data returned
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("AJAX Error: " + status + " - " + error);
+                    }
+                });
+            } else {
+                $('#suggestions').hide();  // Hide suggestions if query is empty
+            }
+        });
+
+        // Handle click on suggestion
+        $(document).on('click', '.suggestion', function() {
+            $('#search').val($(this).text());  // Fill the input with selected suggestion
+            $('#suggestions').hide();  // Hide suggestions
+        });
+
+        // Close suggestions if clicked outside of the search bar
+        $(document).click(function(e) {
+            if (!$(e.target).closest('.search-bar').length) {
+                $('#suggestions').hide();  // Hide suggestions when clicking outside
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+

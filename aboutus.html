@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - EcoPark Nursery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        header {
+            background-color: #228B22;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        .container {
+            padding: 2em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .team-photo {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 2em 0;
+        }
+        footer {
+            background-color: #228B22;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About Us</h1>
+    </header>
+    <div class="container">
+        <h2>Welcome to EcoPark Nursery</h2>
+        <p>
+            At EcoPark Nursery, we are passionate about plants and dedicated to helping you create your own green oasis. Founded in 2005, our nursery has grown from a small family business into a flourishing community hub for plant enthusiasts of all kinds.
+        </p>
+        <h2>Our Mission</h2>
+        <p>
+            Our mission is to inspire and educate our customers on the joys and benefits of gardening and plant care. We strive to provide the highest quality plants, gardening supplies, and customer service to help you cultivate a beautiful and thriving garden.
+        </p>
+        <h2>Meet Our Team</h2>
+        <p>
+            Our team of knowledgeable and friendly staff are here to assist you with all your gardening needs. Whether you are a seasoned gardener or a beginner, we are here to offer expert advice and support every step of the way.
+        </p>
+        <img src="teamphoto.jpg" alt="Our Team" class="team-photo">
+        <h2>Visit Us</h2>
+        <p>
+            We invite you to visit our nursery to explore our wide selection of plants, from vibrant flowers to lush foliage and everything in between. Join us for workshops, events, and a community that shares your love for gardening.
+        </p>
+    </div>
+
+
+    
+ <container id="newsletter">
+    <h2>Subscribe to our Newsletter</h2>
+    <form id="newsletterForm" action="submit.php" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Subscribe</button>
+    </form>
+ </container>
+
+
+    <script>
+        document.getElementById("newsletterForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            const email = document.getElementById("email").value;
+            
+            //regex, validate email
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+            // Check if email matches the pattern
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+            } else {
+                alert("Subscription successful! Thank you for subscribing.");
+                
+                document.getElementById("newsletterForm").submit();
+            }
+        });
+    </script>
+    
+</body>
+</html>
+
+
+
+

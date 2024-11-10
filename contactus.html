@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EcoPark</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="aboutusstyle.css">
+</head>
+<body>
+
+<header class="header">
+    <h1>Ecopark Nursery</h1>
+</header>
+
+<section id="login">
+    <h2>Contact Us</h2>
+    <form id="loginForm" action="#" method="post">
+        <label for="username">Name:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="phonenumber">Contact No.:</label>
+        <input type="tel" id="mobilenumber" name="mobilenumber" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" required>
+        
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="6"></textarea>
+
+        <button type="submit" id="loginButton">Submit</button>
+    </form>
+</section>
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        // Prevent form submission to the server for validation
+        event.preventDefault();
+
+        // Get form field values
+        const username = document.getElementById("username").value;
+        const mobileNumber = document.getElementById("mobilenumber").value;
+        const message = document.getElementById("message").value;
+
+        // Validation logic
+        if (username.trim() === "") {
+            alert("Please enter your name.");
+            return;
+        }
+
+        const phonePattern = /^[0-9]{10}$/;
+        if (!phonePattern.test(mobileNumber)) {
+            alert("Please enter a valid 10-digit mobile number.");
+            return;
+        }
+
+        if (message.trim() === "") {
+            alert("Please enter your message.");
+            return;
+        }
+
+        // Show alert that all validations passed
+        alert("Form submitted successfully!");
+
+        // Submit the form after validation
+        document.getElementById("loginForm").submit();
+    });
+
+    document.getElementById("loginButton").addEventListener("click", function() {
+        alert("Login button clicked!");
+    });
+</script>
+
+<footer>
+    <p>&copy; 2024 EcoPark Nursery</p>
+</footer>
+
+</body>
+</html>

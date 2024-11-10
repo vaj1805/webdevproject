@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Nurseries>
+    <Nursery>
+        <Name>Green Leaf Nursery</Name>
+        <Location>Mumbai, Maharashtra, India</Location>
+        <Founded>1985</Founded>
+        <PopularPlants>
+            <Plant>
+                <Name>Rose</Name>
+                <Type>Flowering</Type>
+                <Characteristics>Fragrant, perennial, available in various colors</Characteristics>
+            </Plant>
+            <Plant>
+                <Name>Bamboo</Name>
+                <Type>Grass</Type>
+                <Characteristics>Fast-growing, low maintenance, used in landscaping</Characteristics>
+            </Plant>
+        </PopularPlants>
+    </Nursery>
+    
+    <Nursery>
+        <Name>Eco Blooms</Name>
+        <Location>Pune, Maharashtra, India</Location>
+        <Founded>1992</Founded>
+        <PopularPlants>
+            <Plant>
+                <Name>Ficus</Name>
+                <Type>Indoor</Type>
+                <Characteristics>Air-purifying, evergreen, easy to maintain</Characteristics>
+            </Plant>
+            <Plant>
+                <Name>Succulent</Name>
+                <Type>Drought-Resistant</Type>
+                <Characteristics>Low water requirement, perfect for indoor decor</Characteristics>
+            </Plant>
+        </PopularPlants>
+    </Nursery>
+    
+    <Nursery>
+        <Name>Flora Haven</Name>
+        <Location>Bangalore, Karnataka, India</Location>
+        <Founded>2005</Founded>
+        <PopularPlants>
+            <Plant>
+                <Name>Orchid</Name>
+                <Type>Flowering</Type>
+                <Characteristics>Exotic, requires specific care, beautiful blooms</Characteristics>
+            </Plant>
+            <Plant>
+                <Name>Money Plant</Name>
+                <Type>Indoor</Type>
+                <Characteristics>Easy to grow, believed to bring good luck</Characteristics>
+            </Plant>
+        </PopularPlants>
+    </Nursery>
+</Nurseries>

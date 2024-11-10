@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Nursery Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Validate Plant Nurseries</h2>
+        <input type="text" id="companyNameInput" placeholder="Enter plant nursery name">
+        <button onclick="validateCompanyName()">Validate</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        async function validateCompanyName() {
+            const companyName = document.getElementById("companyNameInput").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            if (!companyName) {
+                resultDiv.textContent = "Please enter a company name.";
+                return;
+            }
+
+            try {
+                // Fetch XML data from the server
+                const response = await fetch('production.xml'); // Replace with your actual XML server URL
+                if (!response.ok) {
+                    throw new Error("Failed to retrieve data from the server.");
+                }
+                const xmlText = await response.text();
+
+                // Parse the XML data
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+                const companies = xmlDoc.getElementsByTagName("Name");
+
+                // Check if the entered company name exists in the XML data
+                let found = false;
+                for (let i = 0; i < companies.length; i++) {
+                    if (companies[i].textContent === companyName) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                // Display the result
+                if (found) {
+                    resultDiv.textContent = "Company found: " + companyName;
+                    resultDiv.style.color = "green";
+                } else {
+                    resultDiv.textContent = "Company not found: " + companyName;
+                    resultDiv.style.color = "red";
+                }
+            } catch (error) {
+                resultDiv.textContent = "Error: " + error.message;
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
